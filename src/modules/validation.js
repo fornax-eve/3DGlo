@@ -1,6 +1,30 @@
 const validation = function () {
+    const calcBlock = document.querySelector('.calc-block');
+    const calcInputs = calcBlock.querySelectorAll('input');
+    const select = calcBlock.querySelector('.calc-type');
+
     const typeText = document.querySelectorAll('[name = "user_name"]')
     const btns = document.querySelectorAll('[type="submit"]')
+
+    calcInputs.forEach((elem) => {
+        elem.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D+/, "")
+        })
+    })
+    select.addEventListener('change', () => {
+        calcInputs.forEach((elem) => {
+            elem.value = ""
+        })
+        if (select.selectedIndex == 0) {
+            calcInputs.forEach((elem) => {
+                elem.setAttribute('disabled','disabled')
+            })
+        } else {
+            calcInputs.forEach((elem) => {
+                elem.removeAttribute('disabled')
+            })
+        }
+    })
 
     btns.forEach(elem => {
         let isTr = false;
@@ -20,7 +44,7 @@ const validation = function () {
             } else {
                 isTr = true;
             }
-            if (isTr) {
+            if (!isTr) {
                 alert('Некорректное заполнение')
             } else {
                 alert('السلام عليكم‎ ')
@@ -28,7 +52,6 @@ const validation = function () {
         })
 
     })
-
 
     typeText.forEach(elem => {
         elem.addEventListener('input', () => {
