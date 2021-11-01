@@ -1,20 +1,29 @@
-const menu = function() {
+const toggleMenu = function () {
     const menuBtn = document.querySelector('.menu');
     const menu = document.querySelector('menu');
-    const closeBtn = menu.querySelector('.close-btn');
-    const menuItem = menu.querySelectorAll('li > a');
+    const body = document.querySelector('body');
 
     const handleMenu = () => {
-        // if (!menu.style.transform) {
-        //     menu.style.transform = 'translateX(0)'
-        // } else {
-        //     menu.style.transform = ''
-        // }
-        menu.classList.toggle('active-menu')
+        menu.classList.toggle('active-menu');
     }
-    menuBtn.addEventListener('click', handleMenu);
-    closeBtn.addEventListener('click', handleMenu);
-    menuItem.forEach(elem => elem.addEventListener('click', handleMenu))
+    // menuBtn.addEventListener('click', handleMenu);
+    // menu.addEventListener('click', (e) => {
+    //     if (e.target.matches('a') && e.target.closest('menu')) {
+    //         handleMenu()
+    //     }
+    // })
+
+    body.addEventListener('click', (e) => {
+        console.log(e.target)
+        if (e.target.matches('a') && e.target.closest('menu')) {
+            handleMenu()
+        } else if (e.target.closest('.menu')) {
+            handleMenu()
+        } else if (menu.classList.contains('active-menu') && (!e.target.closest('menu'))) {
+            e.preventDefault();
+            handleMenu()
+        }
+    })
 }
 
-export default menu;
+export default toggleMenu;
