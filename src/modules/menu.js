@@ -13,8 +13,14 @@ const menu = function() {
         menu.classList.toggle('active-menu')
     }
     menuBtn.addEventListener('click', handleMenu);
-    closeBtn.addEventListener('click', handleMenu);
-    menuItem.forEach(elem => elem.addEventListener('click', handleMenu))
+    closeBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        handleMenu();
+    });
+    menuItem.forEach(elem => elem.addEventListener('click', (e) => {
+        // e.preventDefault();
+        handleMenu();
+    }))
 }
 
 export default menu;
