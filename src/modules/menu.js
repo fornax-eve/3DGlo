@@ -15,6 +15,9 @@ const toggleMenu = function () {
 
     body.addEventListener('click', (e) => {
         if (e.target.matches('a') && e.target.closest('menu')) {
+            if (e.target.classList.contains('close-btn')) {
+                e.preventDefault()
+            }
             handleMenu()
         } else if (e.target.closest('.menu')) {
             handleMenu()
