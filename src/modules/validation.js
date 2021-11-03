@@ -5,6 +5,8 @@ const validation = function () {
 
     const typeText = document.querySelectorAll('[name = "user_name"]')
     const btns = document.querySelectorAll('[type="submit"]')
+    const yourMsg = document.querySelector('[placeholder="Ваше сообщение"]')
+    console.log(yourMsg)
 
     calcInputs.forEach((elem) => {
         elem.addEventListener('input', (e) => {
@@ -12,9 +14,14 @@ const validation = function () {
         })
     })
     select.addEventListener('change', () => {
-        calcInputs.forEach((elem) => {
-            elem.value = ""
-        })
+
+        if (select.selectedIndex == 0) {
+            calcInputs.forEach((elem) => {
+                elem.value = ""
+            })
+        }
+
+
         if (select.selectedIndex == 0) {
             calcInputs.forEach((elem) => {
                 elem.setAttribute('disabled','disabled')
@@ -34,20 +41,21 @@ const validation = function () {
         elem.addEventListener('click', (e) => {
             e.preventDefault();
             if (!/^(?!.*@.*@.*$)(?!.*@.*\-\-.*\..*$)(?!.*@.*\-\..*$)(?!.*@.*\-$)(.*@.+(\..{1,11})?)$/.test(email.value)) {
-                email.value = ''
+                // email.value = ''
+                email.style.backgroundColor = 'pink';
+            } else {
+                email.style.backgroundColor = 'white';
             }
             if (/[^\d()-]/g.test(phone.value)) {
-                phone.value = ''
+                // phone.value = ''
+                phone.style.backgroundColor = 'pink';
+            } else {
+                phone.style.backgroundColor = 'white';
             }
             if ((text.value == '') || (email.value == '') || (phone.value =='')) {
                 isTr = false;
             } else {
                 isTr = true;
-            }
-            if (!isTr) {
-                alert('Некорректное заполнение')
-            } else {
-                alert('السلام عليكم‎ ')
             }
         })
 
@@ -57,6 +65,10 @@ const validation = function () {
         elem.addEventListener('input', () => {
             elem.value = elem.value.replace(/[^а-яА-Я\-\s]/, "")
         })
+    })
+
+    yourMsg.addEventListener('input', () => {
+        yourMsg.value = yourMsg.value.replace(/[^а-яА-Я\-\s]/, "")
     })
 }
 
