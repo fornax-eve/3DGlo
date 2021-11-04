@@ -6,7 +6,6 @@ const validation = function () {
     const typeText = document.querySelectorAll('[name = "user_name"]')
     const btns = document.querySelectorAll('[type="submit"]')
     const yourMsg = document.querySelector('[placeholder="Ваше сообщение"]')
-    console.log(yourMsg)
 
     calcInputs.forEach((elem) => {
         elem.addEventListener('input', (e) => {
