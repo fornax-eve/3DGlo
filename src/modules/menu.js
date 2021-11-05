@@ -1,3 +1,5 @@
+import {animate} from "./helper";
+
 const toggleMenu = function () {
     const menuBtn = document.querySelector('.menu');
     const menu = document.querySelector('menu');
@@ -13,24 +15,24 @@ const toggleMenu = function () {
     //     }
     // })
 
-    const animate = function ({timing, draw, duration}) {
-
-        let start = performance.now();
-
-        requestAnimationFrame(function animate(time) {
-            // timeFraction изменяется от 0 до 1
-            let timeFraction = (time - start) / duration;
-            if (timeFraction > 1) timeFraction = 1;
-
-            let progress = timing(timeFraction);
-
-            draw(progress);
-
-            if (timeFraction < 1) {
-                requestAnimationFrame(animate);
-            }
-        });
-    }
+    // const animate = function ({timing, draw, duration}) {
+    //
+    //     let start = performance.now();
+    //
+    //     requestAnimationFrame(function animate(time) {
+    //         // timeFraction изменяется от 0 до 1
+    //         let timeFraction = (time - start) / duration;
+    //         if (timeFraction > 1) timeFraction = 1;
+    //
+    //         let progress = timing(timeFraction);
+    //
+    //         draw(progress);
+    //
+    //         if (timeFraction < 1) {
+    //             requestAnimationFrame(animate);
+    //         }
+    //     });
+    // }
 
     body.addEventListener('click', (e) => {
         if (e.target.matches('a') && e.target.closest('menu')) {

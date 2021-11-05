@@ -1,3 +1,5 @@
+import {animate} from "./helper";
+
 const calc = function (price = 100, animationTime = 2) {
     const calcBlock = document.querySelector('.calc-block');
     const calcType = document.querySelector('.calc-type');
@@ -28,25 +30,18 @@ const calc = function (price = 100, animationTime = 2) {
 
         if (calcTypeValue && calcSquareValue) {
             totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-            animate(totalValue, animationTime);
+            // animate(totalValue, animationTime);
+            animate({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    total.textContent = Math.round(totalValue * progress);
+                }
+            });
         } else if (calcSquareValue == 0) {
             total.textContent = 0;
-        }
-
-        function animate(value, time) {
-            let count = time * 25;
-            const newValue = Math.round(value / count);
-            let totalSum = 0;
-            requestAnimationFrame(function anim() {
-                    totalSum += newValue;
-                    total.textContent = totalSum;
-                    if (totalSum > totalValue) {
-                        total.textContent = totalValue;
-                    } else {
-                        requestAnimationFrame(anim)
-                    }
-                }
-            )
         }
     }
 
