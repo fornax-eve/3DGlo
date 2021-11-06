@@ -36,6 +36,7 @@ const toggleMenu = function () {
             e.preventDefault();
             handleMenu()
         } else if (e.target.closest('[href="#service-block"]')) {
+            e.preventDefault();
             const hash = e.target.closest('[href="#service-block"]').hash
             const serviceBl = document.querySelector(hash);
             let coords = serviceBl.getBoundingClientRect().top + window.pageYOffset;
