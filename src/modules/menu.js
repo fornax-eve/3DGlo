@@ -4,35 +4,11 @@ const toggleMenu = function () {
     const menuBtn = document.querySelector('.menu');
     const menu = document.querySelector('menu');
     const body = document.querySelector('body');
+    const serviceBlock = document.querySelector('[href="#service-block"]');
 
     const handleMenu = () => {
         menu.classList.toggle('active-menu');
     }
-    // menuBtn.addEventListener('click', handleMenu);
-    // menu.addEventListener('click', (e) => {
-    //     if (e.target.matches('a') && e.target.closest('menu')) {
-    //         handleMenu()
-    //     }
-    // })
-
-    // const animate = function ({timing, draw, duration}) {
-    //
-    //     let start = performance.now();
-    //
-    //     requestAnimationFrame(function animate(time) {
-    //         // timeFraction изменяется от 0 до 1
-    //         let timeFraction = (time - start) / duration;
-    //         if (timeFraction > 1) timeFraction = 1;
-    //
-    //         let progress = timing(timeFraction);
-    //
-    //         draw(progress);
-    //
-    //         if (timeFraction < 1) {
-    //             requestAnimationFrame(animate);
-    //         }
-    //     });
-    // }
 
     body.addEventListener('click', (e) => {
         if (e.target.matches('a') && e.target.closest('menu')) {
@@ -59,6 +35,23 @@ const toggleMenu = function () {
         } else if (menu.classList.contains('active-menu') && (!e.target.closest('menu'))) {
             e.preventDefault();
             handleMenu()
+        } else if (e.target.closest('[href="#service-block"]')) {
+            const hash = e.target.closest('[href="#service-block"]').hash
+            const serviceBl = document.querySelector(hash);
+            let coords = serviceBl.getBoundingClientRect().top + window.pageYOffset;
+            let scrollTop = document.documentElement.scrollTop;
+            animate({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                   document.documentElement.scrollTop = scrollTop + (progress * coords);
+                   if (document.documentElement.scrollTop > coords) {
+                       document.documentElement.scrollTop = coords;
+                   }
+                }
+            })
         }
     })
 }
