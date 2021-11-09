@@ -3,6 +3,7 @@ const validation = function () {
     const calcInputs = calcBlock.querySelectorAll('input');
     const select = calcBlock.querySelector('.calc-type');
 
+    const emailText = document.querySelectorAll('[name = "user_email"]')
     const typeText = document.querySelectorAll('[name = "user_name"]')
     const typePhone = document.querySelectorAll('[name="user_phone"]')
     const btns = document.querySelectorAll('[type="submit"]')
@@ -123,7 +124,6 @@ const validation = function () {
             } else {
                 text.value = nameValidation(text.value);
                 text.style.backgroundColor = 'white';
-                console.log('fdjgfjdds')
             }
 
             if (!emailValidation(email.value)) {
@@ -189,6 +189,12 @@ const validation = function () {
         }
     })
 
+    emailText.forEach(elem => {
+        elem.addEventListener('input', () => {
+            elem.value = elem.value.replace(/[^a-zA-Z\-\@\_\.\!\~\*\']/, "") //@  -  _  . ! ~ * '
+        })
+    })
+
     typeText.forEach(elem => {
         elem.addEventListener('input', () => {
             elem.value = elem.value.replace(/[^а-яА-Я\-\s]/, "")
@@ -197,7 +203,11 @@ const validation = function () {
 
     typePhone.forEach(elem => {
         elem.addEventListener('input', () => {
-            elem.value = elem.value.replace(/[^\d\(\)\-]/, "")
+            if (elem.value.length > 16) {
+                elem.value = elem.value.substr(0, 16);
+            } else {
+                elem.value = elem.value.replace(/[^\d\(\)\-]/, "")
+            }
         })
     })
 
