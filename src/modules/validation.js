@@ -154,7 +154,7 @@ const validation = function () {
             yourMsg.value = validationForDoubles(yourMsg.value);
         }
 
-        elem.addEventListener('click', validation, false);
+        elem.addEventListener('submit', validation);
 
         text.addEventListener('blur', function (e) {
             if (!nameValidation(text.value)) {
@@ -162,7 +162,6 @@ const validation = function () {
             } else {
                 text.value = nameValidation(text.value);
                 text.style.backgroundColor = 'white';
-                console.log('fdjgfjdds')
             }
         });
 

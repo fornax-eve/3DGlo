@@ -5,6 +5,7 @@ import calc from './modules/calc'
 import validation from './modules/validation'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
+import sendforms from "./modules/sendforms";
 
 timer('7 january 2022');
 menu();
@@ -13,3 +14,12 @@ calc(100, 1);
 validation();
 tabs();
 slider('portfolio-content', 'portfolio-item', 'portfolio-dots', 'dot', 'portfolio-btn');
+sendforms({
+    formId: 'form1',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+})
