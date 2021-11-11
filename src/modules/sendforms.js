@@ -1,4 +1,6 @@
-const sendForm = function ({formId, someElem = []}) {
+import {animate} from "./helper";
+
+const sendForm = ({formId, someElem = []}) => {
     const form = document.getElementById(formId);
 
     const statusBlock = document.createElement('div');
@@ -27,7 +29,6 @@ const sendForm = function ({formId, someElem = []}) {
                     success = false;
                 }
             }
-
             if (inp.classList.contains("mess")) {
                 if (inp.value != '') {
                     if (!/^[а-яА-Я\s\d\.\,\-]+$/.test(inp.value)) {
@@ -42,7 +43,6 @@ const sendForm = function ({formId, someElem = []}) {
                 }
             }
         })
-
         return success;
     }
 
@@ -54,33 +54,53 @@ const sendForm = function ({formId, someElem = []}) {
         form.append(statusBlock)
 
         formData.forEach((val, key) => {
-            formBody[key] = val;
-        })
-        console.log(formBody)
-        someElem.forEach(elem => {
-            const element = document.getElementById(elem.id)
-
-            if (elem.type === 'block') {
-                formBody[elem.id] = element.textContent;
-            } else if (elem.type === 'input') {
-                formBody[elem.id] = element.value;
+            if (val != '') {
+                formBody[key] = val;
             }
         })
-        console.log(validate(formElements))
+        // someElem.forEach(elem => {
+        //     const element = document.getElementById(elem.id)
+        //
+        //     if (elem.type === 'block') {
+        //         formBody[elem.id] = element.textContent;
+        //     } else if (elem.type === 'input') {
+        //         formBody[elem.id] = element.value;
+        //     }
+        // })
         if (validate(formElements)) {
             sendData(formBody)
                 .then(data => {
+                    const modal = document.querySelector('.popup');
+                    statusBlock.style.color = 'green'
                     statusBlock.textContent = successText
-                    formElements.forEach(inp => {
-                        inp.value = '';
-                    })
-                    console.log(data)
+
+                    if (formId == 'form3') {
+                        animate({
+                            timing(timeFraction) {
+                                return timeFraction
+                            },
+                            duration: 3000,
+                            draw(progress) {
+                                modal.style.opacity = 1 - progress;
+                            }
+                        })
+                    }
+
+                    setTimeout(() => {
+                        formElements.forEach(inp => {
+                            inp.value = '';
+                        })
+                        statusBlock.style.color = 'white'
+                        modal.style.display = 'none'
+                        statusBlock.style.display = 'none'
+                        modal.style.opacity = 1
+                    }, 3500)
                 })
                 .catch(error => {
                     statusBlock.textContent = errorText
                 })
         } else {
-            statusBlock.textContent = errorText
+            statusBlock.textContent = errorText + '  Неверный формат'
         }
     }
     try {

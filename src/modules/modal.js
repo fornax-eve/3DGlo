@@ -7,7 +7,7 @@ const modal = () => {
     const popupContent = modal.querySelector('.popup-content');
     const colors = ['black', 'brown', 'darkslategray', 'maroon', 'indigo', 'midnightblue', 'purple', 'navy', 'darkgreen', 'goldenrod'];
 
-    const animationWrapper = function () {
+    const animationWrapper = () => {
         let degree1 = 0;
         let count = 0;
         let istrue = true;

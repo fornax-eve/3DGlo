@@ -1,6 +1,6 @@
 import {animate} from "./helper";
 
-const calc = function (price = 100, animationTime = 2) {
+const calc = (price = 100, animationTime = 2) => {
     const calcBlock = document.querySelector('.calc-block');
     const calcType = document.querySelector('.calc-type');
     const calcSquare = document.querySelector('.calc-square');
@@ -8,7 +8,7 @@ const calc = function (price = 100, animationTime = 2) {
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total')
 
-    const countCalc = function () {
+    const countCalc = () =>{
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value
         const calcSquareValue = +calcSquare.value;
         console.log(calcSquareValue)

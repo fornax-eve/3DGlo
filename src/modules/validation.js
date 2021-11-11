@@ -34,7 +34,7 @@ const validation = function () {
         }
     })
 
-    const validationForDoubles = function (string) {
+    const validationForDoubles = (string) => {
         let new_str = string.replace(/\-{2,}/g, '-');
         let str = new_str.replace(/\s{2,}/g, ' ');
         while ((str[0] == ' ') || (str[0] == '-') || (str[str.length - 1] == ' ') || (str[str.length - 1] == '-')) {
@@ -44,7 +44,7 @@ const validation = function () {
         return str;
     }
 
-    const upperCase_lowerCase = function (string) {
+    const upperCase_lowerCase = (string) => {
         let array = [];
         string.split(' ').forEach(el => {
             if (!/^-/g.test(el)) {
@@ -62,7 +62,7 @@ const validation = function () {
         return array;
     }
 
-    const nameValidation = function (string) {
+    const nameValidation = (string) => {
         if (string.length < 2) {
             return false;
         }
@@ -71,7 +71,7 @@ const validation = function () {
         return string;
     }
 
-    const emailValidation = function (string) {
+    const emailValidation = (string) => {
         if (string.length < 10) {
             return false;
         }
@@ -83,7 +83,7 @@ const validation = function () {
         return string;
     }
 
-    const phoneValidation = function (string) {
+    const phoneValidation = (string) => {
         let new_str = string.replace(/\-{2,}/g, '-');
         let new_str1 = new_str.replace(/^-+|-+$/g, '');
         let new_str2 = new_str1.replace(/\({2,}/g, '(');
@@ -115,7 +115,7 @@ const validation = function () {
         label.style.fontSize = '12px';
         label.style.display = 'none';
 
-        const validation = function (e) {
+        const validation = (e) => {
 
             e.preventDefault();
 
@@ -156,7 +156,7 @@ const validation = function () {
 
         elem.addEventListener('submit', validation);
 
-        text.addEventListener('blur', function (e) {
+        text.addEventListener('blur',  (e) => {
             if (!nameValidation(text.value)) {
                 text.style.backgroundColor = 'pink';
             } else {
@@ -165,7 +165,7 @@ const validation = function () {
             }
         });
 
-        email.addEventListener('blur', function (e) {
+        email.addEventListener('blur',  (e) => {
             if (!emailValidation(email.value)) {
                 email.style.backgroundColor = 'pink';
             } else {
@@ -174,7 +174,7 @@ const validation = function () {
             }
         });
 
-        phone.addEventListener('blur', function (e) {
+        phone.addEventListener('blur', (e) => {
             if (!phoneValidation(phone.value)) {
                 phone.style.backgroundColor = 'pink';
             } else {

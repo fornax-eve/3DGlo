@@ -1,4 +1,4 @@
-const animate = function ({timing, draw, duration}) {
+const animate = ({timing, draw, duration}) => {
 
     let start = performance.now();
 
