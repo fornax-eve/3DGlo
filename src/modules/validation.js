@@ -205,13 +205,13 @@ const validation = function () {
             if (elem.value.length > 16) {
                 elem.value = elem.value.substr(0, 16);
             } else {
-                elem.value = elem.value.replace(/[^\d\(\)\-]/, "")
+                elem.value = elem.value.replace(/[^\d\(\)\-\+]/, "")
             }
         })
     })
 
     yourMsg.addEventListener('input', () => {
-        yourMsg.value = yourMsg.value.replace(/[^а-яА-Я\-\s]/, "")
+        yourMsg.value = yourMsg.value.replace(/[^а-яА-Я\-\s\d\,\.\:]/, "")
     })
 }
 

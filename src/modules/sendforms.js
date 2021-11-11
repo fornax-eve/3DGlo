@@ -22,27 +22,26 @@ const sendForm = function ({formId, someElem = []}) {
         let success = true;
         list.forEach(inp => {
             // if (!inp.classList.contains('success')) {
-            //     success = false;
-            // }/^[a-zA-Z_ ]*$/
             if (inp.classList.contains("form-name")) {
-                if (/[а-яА-Я\s]+[^\-]+/g.test(inp.value)) {
-                    console.log(inp.value)
-                    console.log('true')
-                } else {
-                    console.log('false')
+                if (!/[а-яА-Я\s]+[^\-]+/g.test(inp.value)) {
+                    success = false;
                 }
             }
-            if (inp.classList.contains("form-email")) {
 
+            if (inp.classList.contains("mess")) {
+                if (inp.value != '') {
+                    if (!/^[а-яА-Я\s\d\.\,\-]+$/.test(inp.value)) {
+                        success = false;
+                    }
+                }
             }
-            if (inp.classList.contains("form-phone")) {
 
+            if (inp.classList.contains("form-phone")) {
+                if (!/^[+]?\d+$/.test(inp.value)) {
+                    success = false;
+                }
             }
         })
-        // const string  = 'Это мой test-test.test@google.com';
-// const testEmail = /[\-\.\w]+@(\w+\.)+\w+/gi;
-// console.log(string.match(/[\-\.\w]+@(\w+\.)+\w+/gi))
-// console.log(testEmail.test(string))
 
         return success;
     }
@@ -56,12 +55,10 @@ const sendForm = function ({formId, someElem = []}) {
 
         formData.forEach((val, key) => {
             formBody[key] = val;
-            // console.log(formBody[key])
         })
         console.log(formBody)
         someElem.forEach(elem => {
             const element = document.getElementById(elem.id)
-            // console.log(element)
 
             if (elem.type === 'block') {
                 formBody[elem.id] = element.textContent;
@@ -69,7 +66,7 @@ const sendForm = function ({formId, someElem = []}) {
                 formBody[elem.id] = element.value;
             }
         })
-
+        console.log(validate(formElements))
         if (validate(formElements)) {
             sendData(formBody)
                 .then(data => {
@@ -82,6 +79,8 @@ const sendForm = function ({formId, someElem = []}) {
                 .catch(error => {
                     statusBlock.textContent = errorText
                 })
+        } else {
+            statusBlock.textContent = errorText
         }
     }
     try {

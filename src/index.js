@@ -15,7 +15,7 @@ validation();
 tabs();
 slider('portfolio-content', 'portfolio-item', 'portfolio-dots', 'dot', 'portfolio-btn');
 sendforms({
-    formId: 'form1',
+    formId: 'form2',
     someElem: [
         {
             type: 'block',
