@@ -89,7 +89,7 @@ const validation = function () {
         let new_str2 = new_str1.replace(/\({2,}/g, '(');
         let new_str3 = new_str2.replace(/\){2,}/g, ')');
         string = new_str3;
-        if ((string.length > 5) && (string.length < 15)) {
+        if ((string.length > 5) && (string.length < 17)) {
             return string;
         } else {
             return false;

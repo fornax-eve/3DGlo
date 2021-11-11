@@ -42,6 +42,12 @@ const sendForm = ({formId, someElem = []}) => {
                     success = false;
                 }
             }
+
+            if (inp.classList.contains("form-email")) {
+                if (inp.value == '') {
+                    success = false;
+                }
+            }
         })
         return success;
     }
@@ -49,7 +55,7 @@ const sendForm = ({formId, someElem = []}) => {
     const submitForm = () => {
         const formData = new FormData(form)
         const formElements = form.querySelectorAll('input')
-
+        statusBlock.style.display = 'block'
         statusBlock.textContent = loadText;
         form.append(statusBlock)
 
@@ -94,6 +100,7 @@ const sendForm = ({formId, someElem = []}) => {
                         modal.style.display = 'none'
                         statusBlock.style.display = 'none'
                         modal.style.opacity = 1
+                        // statusBlock.remove();
                     }, 3500)
                 })
                 .catch(error => {
