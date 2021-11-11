@@ -15,7 +15,25 @@ validation();
 tabs();
 slider('portfolio-content', 'portfolio-item', 'portfolio-dots', 'dot', 'portfolio-btn');
 sendforms({
+    formId: 'form1',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+})
+sendforms({
     formId: 'form2',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+})
+sendforms({
+    formId: 'form3',
     someElem: [
         {
             type: 'block',
