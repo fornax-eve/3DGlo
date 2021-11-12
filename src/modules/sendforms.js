@@ -38,6 +38,10 @@ const sendForm = ({formId, someElem = []}) => {
             }
 
             if (inp.classList.contains("form-phone")) {
+                console.log(inp.value.length)
+                if (inp.value.length < 5) {
+                    success = false;
+                }
                 if (!/^[+]?\d+$/.test(inp.value)) {
                     success = false;
                 }
